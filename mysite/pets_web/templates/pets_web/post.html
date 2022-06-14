@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>{{ post.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<p>{{ post.text }}</p>
+<p>Автор - {{ post.author }}</p>
+<p>Дата создания - {{ post.created_date }}</p>
+<p>Дата публикации - {{ post.published_date }}</p>
+<p>Количество лайков - {{ post.likes_quantity }}</p>
+
+
+</body>
+</html>

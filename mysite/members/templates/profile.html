@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Войти{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+  <br/>
+  <a>Имя пользователя: {{ user_name }}</a><br/>
+  <a>e-mail: {{ user_name.email }}</a><br/>
+  <a>Дата регистрации: {{ user_name.date_joined }}</a><br/>
+  <a>Последний раз был на сайте: {{ user_name.last_login }}</a><br/>
+
+  {% else %}
+  <br/>
+  <a>Вы не авторизованы.</a>
+<!-- under construction -->
+
+
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br/>
+<h2>Posts</h2>
+
+<ul>
+{% for post in object_list %}
+    <li><a href="{% url 'pets_web:post_detail' post.pk %}">
+        {{ post.title }}</a> | {{ post.author }}
+        {% if user.is_authenticated %}
+          {% if user.id == post.author.master_id %}
+            - <small>
+              <a href="{% url 'pets_web:post_edit' post.pk %}" class="badge badge-warning">(редактировать)</a>
+              <a href="{% url 'pets_web:post_delete' post.pk %}" class="badge badge-danger">(удалить)</a>
+          {% endif %}
+        {% endif %}
+        </small><br/>
+        {{ post.published_date }}</li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <br/>
+    <h2>{{ post.title }}</h2>
+    <small>Автор - {{ post.author }}. Дата создания - {{ post.created_date }}</small>
+    <hr>
+    <p>{{ post.text|safe }}</p>
+
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.master_id %}
+        <a href="{% url 'pets_web:post_edit' post.pk %}" class="badge badge-warning">(редактировать)</a>
+        <a href="{% url 'pets_web:post_delete' post.pk %} " class="badge badge-danger">(удалить)</a>
+        {% endif %}
+        <br/>
+    {% endif %}
+    <br/>
+    <form action="{% url 'pets_web:like_post' post.id %}" method="POST">
+        {% csrf_token %}
+    {% if user.is_authenticated %}
+        {% if liked %}
+            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-danger btn-sm">Unlike</button> - {{ total_likes }} лайков
+        {% else %}
+            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Like</button> - {{ total_likes }} лайков
+        {% endif %}
+    {% else %}
+        <small>Авторизуйтесь для возможности ставить лайки.</small>
+    {% endif %}
+    </form>
+    <br/><br/>
+    <a href="{% url 'pets_web:home' %}" class="btn btn-secondary">Назад</a>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить пост{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h2>Удалить пост</h2><br/><br/>
+
+    <h3>Удалить - {{ post.title }}</h3>
+    <br/>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            <strong>Вы уверены?</strong><br/>
+            <button class="btn btn-success">Удалить пост</button>
+        </form>
+    </div>
+{% else %}
+    <br/>
+    Вы не авторизованы для удаления поста.
+{% endif %}
+
+{% endblock %}

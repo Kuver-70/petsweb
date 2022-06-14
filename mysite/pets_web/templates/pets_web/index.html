@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets Web Main Page</title>
+</head>
+<body>
+<h1>Pets Web Social Network</h1>
+<!--
+{% if latest_post_list %}
+     <ul>
+     {% for post in latest_post_list %}
+         <li><a href="{% url 'pets_web:post' post.id %}">{{ post.title }}</a></li><br>
+     {% endfor %}
+     </ul>
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}
+-->
+
+{% for post in object_list %}
+    {{ post.title }}
+
+{% endfor %}
+
+</body>
+</html>

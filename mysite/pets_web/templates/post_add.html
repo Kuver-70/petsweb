@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Создание нового поста{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h2>Создать пост</h2>
+    <br/><br/>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-success">Запостить</button>
+        </form>
+    </div>
+
+    <script>
+        let name = "{{ user.id }}";
+        let post = "{{ post.pk }}";
+        let pet = "{{ pet.master }}";
+        document.getElementById("user").value = name;
+    </script>
+
+{% else %}
+    <br/>
+    Вы не авторизованы для создания поста.
+{% endif %}
+
+{% endblock %}

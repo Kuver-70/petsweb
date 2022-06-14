@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование поста{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h2>Редактировать пост</h2>
+    <br/><br/>
+
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-success">Обновить</button>
+        </form>
+    </div>
+{% else %}
+    <br/>
+    Вы не авторизованы для редактирования поста.
+{% endif %}
+
+{% endblock %}
